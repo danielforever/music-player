@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import RoomJoin from "./RoomJoin";
+import RoomJoinPage from "./RoomJoinPage";
 import CreateRoomPage from "./CreateRoomPage";
-import Room from "./Room";
+/* import Room from "./Room"; */
 
 import {
 BrowserRouter as Router,
@@ -21,9 +21,11 @@ render() {
     <Router>
         <Routes>
             <Route path='/' element={<p>This is the homepage</p>} />
-            <Route path='/join' element={<RoomJoin/> } />
+            <Route path='/join' element={<RoomJoinPage/> } />
             <Route path='/create' element={<CreateRoomPage/>} />
         </Routes>
     </Router>
   );
+}
+
 }
