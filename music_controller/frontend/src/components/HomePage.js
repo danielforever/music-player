@@ -20,7 +20,7 @@ render() {
   return (
     <Router>
         <Routes>
-            <Route path='/' element={<p>This is the homepage</p>} />
+            <Route path='/' element={<span>This is the homepage</span>} />
             <Route path='/join' element={<RoomJoinPage/> } />
             <Route path='/create' element={<CreateRoomPage/>} />
         </Routes>
