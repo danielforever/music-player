@@ -9,7 +9,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="d-flex justify-content-center" >
         <HomePage />
       </div>
     );

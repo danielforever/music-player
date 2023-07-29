@@ -1,12 +1,78 @@
-import React from "react";
+import React,{ useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { TextField, Button, Grid, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 
 const RoomJoinPage = () => {
+  const handleTextFieldChange = e => setroomCode(e.target.value)
+  const error = '';
+
+  const [roomCode, setroomCode] = useState("");
+  const navigate = useNavigate();
+
+  const roomButtonPressed = async (e) => {
+    e.preventDefault();
+    console.log(roomCode);
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        code: roomCode,
+      }),
+    };
+    fetch("/api/join-room", requestOptions)
+      .then((response) => {
+        if (response.ok) {
+          navigate('/room/' + roomCode);
+        } else {
+          error = "Room not found.";
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+
 
     return (
-      <div>
-        <p>This is the room join page</p>;
-    </div>)
+      <Grid container spacing={1}>
+        <Grid item xs={12} align="center">
+          <Typography variant="h4" component="h4">
+            Join a Room
+          </Typography>
+        </Grid>
+        <form onSubmit={roomButtonPressed}>
+        <Grid item xs={12} align="center">
+          <input
+            error={error}
+            label="Code"
+            placeholder="Enter a Room Code"
+            value={roomCode}
+            type="text"
+            variant="outlined"
+            onChange={handleTextFieldChange}
+          />
+        </Grid>
+        <Grid item xs={12} align="center">
+          <Button
+            variant="contained"
+            type="submit"
+            color="primary"
+          >
+            Enter Room
+          </Button>
+        </Grid>
+        </form>
+        <Grid item xs={12} align="center">
+          <Button variant="contained" color="secondary" to="/" component={Link}>
+            Back
+          </Button>
+        </Grid>
+      </Grid>
+    )
+    
   }
 
 export default RoomJoinPage
