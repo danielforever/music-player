@@ -13,7 +13,6 @@ const RoomJoinPage = () => {
 
   const roomButtonPressed = async (e) => {
     e.preventDefault();
-    console.log(roomCode);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
