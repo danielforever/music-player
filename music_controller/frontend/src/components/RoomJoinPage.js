@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class RoomJoinPage extends Component {
-  constructor(props) {
-    super(props);
+
+const RoomJoinPage = () => {
+
+    return (
+      <div>
+        <p>This is the room join page</p>;
+    </div>)
   }
 
-  render() {
-    return <p>This is the room join page</p>;
-  }
-}
+export default RoomJoinPage
