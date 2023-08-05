@@ -16,7 +16,8 @@ const Room = () => {
     getRoomDetails()
   })
 
-  const getRoomDetails = () => {
+  const getRoomDetails = async (e) => {
+      /* e.preventDefault(); */
       fetch("/api/get-room" + "?code=" + roomCode)
         .then((response) => response.json())
         .then((data) => {
