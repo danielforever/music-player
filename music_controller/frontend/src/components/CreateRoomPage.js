@@ -33,7 +33,7 @@ const CreateRoomPage = () => {
     return (
        <Grid container spacing={1}>
         <Grid item xs={12} align="center">
-          <Typography component="h4" variant="h4">
+          <Typography component={'span'} variant={"h4"}>
             Create A Room
           </Typography>
         </ Grid>
@@ -43,7 +43,7 @@ const CreateRoomPage = () => {
               <input type="checkbox" onChange={() => {setguestCanPause(!guestCanPause) }}/>
         </ Grid>
         <Grid item xs={12} align="center">
-            <FormHelperText>
+            <FormHelperText component={'span'}>
               <div align="center">Votes Required To Skip Song</div>
             </FormHelperText>
             <input

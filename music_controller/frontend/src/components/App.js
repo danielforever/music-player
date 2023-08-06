@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import { render } from "react-dom";
 import RoomJoinPage from "./RoomJoinPage";
 import CreateRoomPage from "./CreateRoomPage";
@@ -13,6 +13,9 @@ import {
 
 
 const App = () => {
+  const [roomCode, setclearRoomCode] = useState(null);
+  const clearRoomCode = e => setclearRoomCode(e.target.value)
+
 
   return (
     <div className="center">
@@ -23,6 +26,12 @@ const App = () => {
               <Route path='/join' element={<RoomJoinPage/> } />
               <Route path='/create' element={<CreateRoomPage/>} />
               <Route path='/room/:roomCode' element={<Room />} />
+{/*               <Route 
+                path='/room/:roomCode' 
+                render={(props) => {
+                  return <Room {...props} leaveRoomCallback={clearRoomCode} />;
+                }}                
+              /> */}
             </Routes>
         </Router>
       </div>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {useParams} from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Grid, Button, ButtonGroup, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from 'react-router-dom';
 
 
 
@@ -11,6 +11,8 @@ const Room = () => {
   const [votesToSkip, setvotesToSkip] = useState(2);
   const [guestCanPause, setguestCanPause] = useState(false);  
   const [isHost , setisHost] = useState(false);  
+
+  const navigate = useNavigate();
 
   let { roomCode } = useParams();
 
@@ -21,7 +23,14 @@ const Room = () => {
   const getRoomDetails = async (e) => {
       /* e.preventDefault(); */
     fetch("/api/get-room" + "?code=" + roomCode)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          leaveRoomCallback();
+          navigate('/');
+        }
+          return response.json();
+        })
+        
       .then((data) => {
         setvotesToSkip(data.votes_to_skip)
         setguestCanPause(data.guest_can_pause)
@@ -36,8 +45,8 @@ const Room = () => {
       headers: { "Content-Type": "application/json" },
     };
     fetch("/api/leave-room", requestOptions).then((_response) => {
-      this.props.leaveRoomCallback();
-      this.props.history.push("/");
+      leaveRoomCallback();
+      navigate('/');
     });
   }
   return (
