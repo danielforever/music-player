@@ -7,21 +7,6 @@ Link
 
 const HomePage = () => {
 
-/*   const [roomCode, setroomCode] = useState(""); */
-
-/* const componentDidMount = async (e) => {
-  e.preventDefault();
-  fetch("/api/user-in-room")
-  .then((response) => response.json())
-  .then((data) => {
-    this.setState({
-      roomCode: data.code,
-    });
-  });
-
-} */
-
-
   return (
   <Grid container spacing={3}>
     <Grid item xs={12} align="center">
