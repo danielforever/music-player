@@ -30,8 +30,6 @@ const Room = ({state}) => {
           console.log("check here");
           navigate('/');
         }
-        console.log(roomCode);
-        console.log(response);
         return response.json();
         })
         

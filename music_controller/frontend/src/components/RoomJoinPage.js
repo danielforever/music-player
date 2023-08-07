@@ -35,40 +35,40 @@ const RoomJoinPage = () => {
 
 
     return (
-      <Grid container spacing={1}>
-        <Grid item xs={12} align="center">
-          <Typography variant="h4" component="h4">
-            Join a Room
-          </Typography>
+      <form onSubmit={roomButtonPressed}>
+        <Grid container spacing={1}>
+          <Grid item xs={12} align="center">
+            <Typography variant="h4" component="h4">
+              Join a Room
+            </Typography>
+          </Grid>
+          <Grid item xs={12} align="center">
+            <input
+              error={error}
+              label="Code"
+              placeholder="Enter a Room Code"
+              value={roomCode}
+              type="text"
+              variant="outlined"
+              onChange={handleTextFieldChange}
+            />
+          </Grid>
+          <Grid item xs={12} align="center">
+            <Button
+              variant="contained"
+              type="submit"
+              color="primary"
+            >
+              Enter Room
+            </Button>
+          </Grid>
+          <Grid item xs={12} align="center">
+            <Button variant="contained" color="secondary" to="/" component={Link}>
+              Back
+            </Button>
+          </Grid>
         </Grid>
-        <form onSubmit={roomButtonPressed}>
-        <Grid item xs={12} align="center">
-          <input
-            error={error}
-            label="Code"
-            placeholder="Enter a Room Code"
-            value={roomCode}
-            type="text"
-            variant="outlined"
-            onChange={handleTextFieldChange}
-          />
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button
-            variant="contained"
-            type="submit"
-            color="primary"
-          >
-            Enter Room
-          </Button>
-        </Grid>
-        </form>
-        <Grid item xs={12} align="center">
-          <Button variant="contained" color="secondary" to="/" component={Link}>
-            Back
-          </Button>
-        </Grid>
-      </Grid>
+      </form>
     )
     
   }

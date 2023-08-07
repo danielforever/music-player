@@ -31,46 +31,45 @@ const CreateRoomPage = () => {
     
 
     return (
-       <Grid container spacing={1}>
-        <Grid item xs={12} align="center">
-          <Typography component={'span'} variant={"h4"}>
-            Create A Room
-          </Typography>
-        </ Grid>
-        <form onSubmit={handleRoomButtonPressed}>
-        <Grid item xs={12} align="center">  
-              <h3 align="center">Guest Control of Playback State</h3>
-              <input type="checkbox" onChange={() => {setguestCanPause(!guestCanPause) }}/>
-        </ Grid>
-        <Grid item xs={12} align="center">
-            <FormHelperText component={'span'}>
-              <div align="center">Votes Required To Skip Song</div>
-            </FormHelperText>
-            <input
-              required={true}
-              type="text"
-              onChange={onvotesToSkipChanged}
-              defaultValue={2}
-            />
+      <form onSubmit={handleRoomButtonPressed}>
+        <Grid container spacing={1}>
+          <Grid item xs={12} align="center">
+            <Typography component={'span'} variant={"h4"}>
+              Create A Room
+            </Typography>
+          </ Grid> 
+          <Grid item xs={12} align="center">  
+                <h3 align="center">Guest Control of Playback State</h3>
+                <input type="checkbox" onChange={() => {setguestCanPause(!guestCanPause) }}/>
+          </ Grid>
+          <Grid item xs={12} align="center">
+              <FormHelperText component={'span'}>
+                <div align="center">Votes Required To Skip Song</div>
+              </FormHelperText>
+              <input
+                required={true}
+                type="text"
+                onChange={onvotesToSkipChanged}
+                defaultValue={2}
+              />
 
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button
-            type="submit"
-            color="primary"
-            variant="contained"
-          >
-            Create A Room
-          </Button>
-        </Grid>
-        </form>
-
-        <Grid item xs={12} align="center">
-          <Button color="secondary" variant="contained" to="/" component={Link}>
-            Back
-          </Button>
-        </Grid>
-      </ Grid>       
+          </Grid>
+          <Grid item xs={12} align="center">
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+            >
+              Create A Room
+            </Button>
+          </Grid>
+          <Grid item xs={12} align="center">
+            <Button color="secondary" variant="contained" to="/" component={Link}>
+              Back
+            </Button>
+          </Grid>
+        </ Grid>     
+      </form>  
     )
 }
 
