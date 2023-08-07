@@ -1,17 +1,21 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { StrictMode } from "react";
+import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./components/App";
-import { createRoot } from 'react-dom/client';
-/* import reportWebVitals from './reportWebVitals'; */
+import reportWebVitals from './reportWebVitals';
 
 
 
 /* if (process.env.NODE_ENV === 'production') disableReactDevTools(); */
-const root = createRoot(document.getElementById('root'));
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>
+  </StrictMode>
 );
 
-/* reportWebVitals(); */
+reportWebVitals();
