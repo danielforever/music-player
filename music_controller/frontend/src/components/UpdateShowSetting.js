@@ -4,9 +4,6 @@ import { useState, useEffect } from "react";
 
 const updateShowSettings = ({updatastate}) => {
 
-    
-/*     showSettingBoard = e => setroomCode(e.target.value) */
-
     return (
             <Grid item xs={12} align="center">
                 <Button
