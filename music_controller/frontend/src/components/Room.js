@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Grid, Button, Typography} from "@mui/material";
 import { useNavigate, Link } from 'react-router-dom';
 import UpdateShowSettings from "./UpdateShowSetting";
+import ShowBoard from "./ShowBoard";
 
 
 const Room = ({state}) => {
@@ -14,15 +15,9 @@ const Room = ({state}) => {
   const [votesToSkip, setvotesToSkip] = useState(2);
   const [guestCanPause, setguestCanPause] = useState(false);  
   const [isHost , setisHost] = useState(false);
+  let { roomCode } = useParams();
 /*   const [showSettings, updateShowSettings] = useState(false); */
   const navigate = useNavigate();
-
-  const updatastate = {
-    heresetroomCode: setroomCode,
-    hereshowSettingBoard: showSettingBoard
-  }
-
-  let { roomCode } = useParams();
 
   useEffect(() => {
     getRoomDetails()
@@ -58,41 +53,61 @@ const Room = ({state}) => {
     });
   }
 
-  return (
-        <div>
-          <Grid container spacing={1}>
-            <Grid item xs={12} align="center">
-              <Typography variant="h4" component="h4">
-                Code: {roomCode}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} align="center">
-              <Typography variant="h6" component="h6">
-                Votes: {votesToSkip}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} align="center">
-              <Typography variant="h6" component="h6">
-                Guest Can Pause: {guestCanPause.toString()}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} align="center">
-              <Typography variant="h6" component="h6">
-                Host: {isHost.toString()}
-              </Typography>
-            </Grid>
-            {isHost ? <UpdateShowSettings updatastate={updatastate}/> : null }
-            <Grid item xs={12} align="center">
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={leaveButtonPressed}
-              >
-                Leave Room
-              </Button>
-            </Grid>
+  const stateboard = {
+    boardvotesToSkip: votesToSkip,
+    boardguestCanPause: guestCanPause,
+    boardroomCode: roomCode,
+    boardgetRoomDetails: getRoomDetails,
+    boardshowSettingBoard: showSettingBoard,
+    boardsetroomCode: setroomCode
+  }
+  const updatastate = {
+    heresetroomCode: setroomCode,
+    hereshowSettingBoard: showSettingBoard
+  }
+
+  if (showSettingBoard){
+    return < ShowBoard stateboard={stateboard}/>
+  }
+    
+  else{
+    return (
+      <div>
+        <Grid container spacing={1}>
+          <Grid item xs={12} align="center">
+            <Typography variant="h4" component="h4">
+              Code: {roomCode}
+            </Typography>
           </Grid>
-        </div>)
+          <Grid item xs={12} align="center">
+            <Typography variant="h6" component="h6">
+              Votes: {votesToSkip}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} align="center">
+            <Typography variant="h6" component="h6">
+              Guest Can Pause: {guestCanPause.toString()}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} align="center">
+            <Typography variant="h6" component="h6">
+              Host: {isHost.toString()}
+            </Typography>
+          </Grid>
+          {isHost ? <UpdateShowSettings updatastate={updatastate}/> : null }
+          <Grid item xs={12} align="center">
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={leaveButtonPressed}
+            >
+              Leave Room
+            </Button>
+          </Grid>
+        </Grid>
+      </div>)
+  }
+
 
 }
 
