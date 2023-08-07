@@ -1,6 +1,5 @@
 import React from "react";
 import { StrictMode } from "react";
-import { render } from "react-dom";
 import { createRoot } from "react-dom/client";
 import App from "./components/App";
 import reportWebVitals from './reportWebVitals';

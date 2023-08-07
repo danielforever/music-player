@@ -16,7 +16,9 @@ const App = () => {
   const [roomCode, setclearRoomCode] = useState(null);
   const clearRoomCode = e => setclearRoomCode(e.target.value)
 
-
+  const state = {
+    passroomCode: roomCode
+  }
   return (
     <div className="center">
       <div className="App">
@@ -25,13 +27,7 @@ const App = () => {
               <Route path='/' element={<HomePage/>} />
               <Route path='/join/' element={<RoomJoinPage/> } />
               <Route path='/create/' element={<CreateRoomPage/>} />
-              <Route path='/room/:roomCode/' element={<Room />} />
-{/*               <Route 
-                path='/room/:roomCode' 
-                render={(props) => {
-                  return <Room {...props} leaveRoomCallback={clearRoomCode} />;
-                }}                
-              /> */}
+              <Route path='/room/:roomCode/' element={<Room state={state} />} />
             </Routes>
         </Router>
       </div>

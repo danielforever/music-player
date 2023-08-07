@@ -77,6 +77,7 @@ class CreateRoomView(APIView):
                             votes_to_skip=votes_to_skip)
                 room.save()
                 # status to check everything is ok?
+                self.request.session['room_code'] = room.code
                 return Response(RoomSerializer(room).data, status=status.HTTP_201_CREATED)
             
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
@@ -99,8 +100,10 @@ class LeaveRoom(APIView):
             self.request.session.pop('room_code')
             host_id = self.request.session.session_key
             room_results = Room.objects.filter(host=host_id)
-            if len(room_results) > 0:
-                room = room_results[0]
+            # if len(room_results) > 0:
+            #     room = room_results[0]
+            #     room.delete()
+            for room in room_results:
                 room.delete()
 
         return Response({'Message': 'Success'}, status=status.HTTP_200_OK)

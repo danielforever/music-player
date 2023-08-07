@@ -6,12 +6,13 @@ import { useNavigate, Link } from 'react-router-dom';
 
 
 
-const Room = () => {
+const Room = ({state}) => {
+  
 
   const [votesToSkip, setvotesToSkip] = useState(2);
   const [guestCanPause, setguestCanPause] = useState(false);  
-  const [isHost , setisHost] = useState(false);  
-
+  const [isHost , setisHost] = useState(false);
+  const [data, setData] = useState(null);
   const navigate = useNavigate();
 
   let { roomCode } = useParams();
@@ -20,15 +21,18 @@ const Room = () => {
     getRoomDetails()
   })
 
+
   const getRoomDetails = async (e) => {
       /* e.preventDefault(); */
     fetch("/api/get-room" + "?code=" + roomCode)
       .then((response) => {
         if (!response.ok) {
-          leaveRoomCallback();
+          console.log("check here");
           navigate('/');
         }
-          return response.json();
+        console.log(roomCode);
+        console.log(response);
+        return response.json();
         })
         
       .then((data) => {
@@ -39,13 +43,12 @@ const Room = () => {
     }
 
   const leaveButtonPressed = async (e) => {
-    e.preventDefault();
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     };
     fetch("/api/leave-room", requestOptions).then((_response) => {
-      leaveRoomCallback();
+      state.passroomCode = null;
       navigate('/');
     });
   }
