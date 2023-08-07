@@ -1,19 +1,26 @@
-import React, { Component } from "react";
-import {useParams} from "react-router-dom";
+import React from "react";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Grid, Button, ButtonGroup, Typography } from "@mui/material";
+import { Grid, Button, Typography} from "@mui/material";
 import { useNavigate, Link } from 'react-router-dom';
-
+import UpdateShowSettings from "./UpdateShowSetting";
 
 
 const Room = ({state}) => {
   
 
+
+  const [setroomCode, showSettingBoard] = useState(false);
   const [votesToSkip, setvotesToSkip] = useState(2);
   const [guestCanPause, setguestCanPause] = useState(false);  
   const [isHost , setisHost] = useState(false);
-  const [data, setData] = useState(null);
+/*   const [showSettings, updateShowSettings] = useState(false); */
   const navigate = useNavigate();
+
+  const updatastate = {
+    heresetroomCode: setroomCode,
+    hereshowSettingBoard: showSettingBoard
+  }
 
   let { roomCode } = useParams();
 
@@ -50,6 +57,7 @@ const Room = ({state}) => {
       navigate('/');
     });
   }
+
   return (
         <div>
           <Grid container spacing={1}>
@@ -73,6 +81,7 @@ const Room = ({state}) => {
                 Host: {isHost.toString()}
               </Typography>
             </Grid>
+            {isHost ? <UpdateShowSettings updatastate={updatastate}/> : null }
             <Grid item xs={12} align="center">
               <Button
                 variant="contained"
